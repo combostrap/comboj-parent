@@ -26,10 +26,12 @@
 
 
     <properties>
+
+        <!-- Encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!-- Compiler plugin -->
+        <!-- Compiler Language -->
         <maven.compiler.release>11</maven.compiler.release>
 
         <!-- Maven Plugin versions -->
@@ -134,36 +136,62 @@
                                     <index>true</index>
                                     <manifestEntries>
                                         <!-- Add the Maven coordinates in the manifest -->
-                                        <Maven-Group-Id>${project.groupId}</Maven-Group-Id>
-                                        <Maven-Artifact-Id>${project.artifactId}</Maven-Artifact-Id>
-                                        <Maven-Version>${project.version}</Maven-Version>
-                                        <Package-Version>${project.version}</Package-Version>
+                                        <Maven-Project-Group-Id>${project.groupId}</Maven-Project-Group-Id>
+                                        <Maven-Project-Artifact-Id>${project.artifactId}</Maven-Project-Artifact-Id>
+                                        <Maven-Project-Version>${project.version}</Maven-Project-Version>
+                                        <Maven-Version>${maven.version}</Maven-Version>
+                                        <Maven-Build-Timestamp>${maven.build.timestamp}</Maven-Build-Timestamp>
+                                        <Maven-Build-Version>${maven.build.version}</Maven-Build-Version>
+                                        <!-- Os -->
+                                        <Os-Arch>${os.arch}</Os-Arch>
+                                        <Os-Name>${os.name}</Os-Name>
+                                        <Os-Version>${os.version}</Os-Version>
+                                        <!-- Java -->
+                                        <Java-Version>${java.version}</Java-Version>
+                                        <Java-Version-Date>${java.version.date}</Java-Version-Date>
+                                        <Java-Vendor>${java.vendor}</Java-Vendor>
+                                        <Java-Vendor-Url>${java.vendor.url}</Java-Vendor-Url>
+                                        <Java-Vendor-Version>${java.vendor.version}</Java-Vendor-Version>
+                                        <Java-VM-Name>${java.vm.name}</Java-VM-Name>
+                                        <Java-VM-Version>${java.vm.version}</Java-VM-Version>
+                                        <Java-VM-Vendor>${java.vm.vendor}</Java-VM-Vendor>
+                                        <Java-VM-Info>${java.vm.info}</Java-VM-Info>
+                                        <Java-Runtime-Name>${java.runtime.name}</Java-Runtime-Name>
+                                        <Java-Runtime-Version>${java.runtime.version}</Java-Runtime-Version>
                                         <!-- Add the Git and build info -->
                                         <!-- https://github.com/git-commit-id/git-commit-id-maven-plugin/blob/master/docs/configuration-and-properties.md -->
                                         <!-- https://github.com/git-commit-id/git-commit-id-plugin-core/blob/master/src/main/java/pl/project13/core/GitCommitPropertyConstant.java -->
                                         <!-- Property are immutable so we can't set them and the IDE is not happy, we silence the warning -->
                                         <!--suppress MavenModelInspection -->
-                                        <Build-Time>${git.build.time}</Build-Time>
-                                        <!--suppress MavenModelInspection -->
                                         <Build-Host>${git.build.host}</Build-Host>
+                                        <!-- The CI unique id -->
+                                        <!--suppress MavenModelInspection -->
+                                        <Build-Number>${git.build.number}</Build-Number>
+                                        <!-- Git info-->
                                         <!--suppress MavenModelInspection -->
                                         <Git-Branch>${git.branch}</Git-Branch>
                                         <!--suppress MavenModelInspection -->
                                         <Git-Dirty>${git.dirty}</Git-Dirty>
                                         <!--suppress MavenModelInspection -->
-                                        <Git-Commit-Id>${git.commit.id}</Git-Commit-Id>
+                                        <Git-Commit>${git.commit.id}</Git-Commit>
                                         <!--suppress MavenModelInspection -->
-                                        <Git-Commit-Id-Abbrev>${git.commit.id.abbrev}</Git-Commit-Id-Abbrev>
+                                        <Git-Commit-Abbrev>${git.commit.id.abbrev}</Git-Commit-Abbrev>
                                         <!--suppress MavenModelInspection -->
-                                        <Git-Commit-Id-Describe>${git.commit.id.describe}</Git-Commit-Id-Describe>
+                                        <Git-Commit-Describe>${git.commit.id.describe}</Git-Commit-Describe>
                                         <!--suppress MavenModelInspection -->
-                                        <Git-Commit-Id-Describe-short>${git.commit.id.describe-short}</Git-Commit-Id-Describe-short>
+                                        <Git-Commit-User-name>${git.build.user.name}</Git-Commit-User-name>
                                         <!--suppress MavenModelInspection -->
-                                        <Git-User-name>${git.build.user.name}</Git-User-name>
+                                        <Git-Commit-User-email>${git.build.user.email}</Git-Commit-User-email>
                                         <!--suppress MavenModelInspection -->
-                                        <Git-User-email>${git.build.user.email}</Git-User-email>
+                                        <Git-Commit-Message-Short>${git.commit.message.short}</Git-Commit-Message-Short>
                                         <!--suppress MavenModelInspection -->
-                                        <Git-Build-Version>${git.build.version}</Git-Build-Version>
+                                        <Git-Commit-Message-Full>${git.commit.message.full}</Git-Commit-Message-Full>
+                                        <!--suppress MavenModelInspection -->
+                                        <Git-Commit-Time>${git.commit.time}</Git-Commit-Time>
+                                        <!--suppress MavenModelInspection -->
+                                        <Git-Tag>${git.tag}</Git-Tag>
+                                        <!--suppress MavenModelInspection -->
+                                        <Git-Tags>${git.tags}</Git-Tags>
                                     </manifestEntries>
                                 </archive>
                                 <!-- Remove examples and native-image -->
