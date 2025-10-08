@@ -142,6 +142,12 @@
                                         <Maven-Version>${maven.version}</Maven-Version>
                                         <Maven-Build-Timestamp>${maven.build.timestamp}</Maven-Build-Timestamp>
                                         <Maven-Build-Version>${maven.build.version}</Maven-Build-Version>
+                                        <!-- Package -->
+                                        <!-- https://docs.oracle.com/javase/8/docs/technotes/guides/versioning/spec/versioning2.html#wp89936 -->
+                                        <Package-Title>${project.name}</Package-Title>
+                                        <Package-Version>${project.version}</Package-Version>
+                                        <Package-Vendor>${project.organization.name}</Package-Vendor>
+                                        <Package-Vendor-Url>${project.organization.url}</Package-Vendor-Url>
                                         <!-- Os -->
                                         <Os-Arch>${os.arch}</Os-Arch>
                                         <Os-Name>${os.name}</Os-Name>
