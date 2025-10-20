@@ -190,8 +190,9 @@
                                         <Git-Commit-User-email>${git.build.user.email}</Git-Commit-User-email>
                                         <!--suppress MavenModelInspection -->
                                         <Git-Commit-Message-Short>${git.commit.message.short}</Git-Commit-Message-Short>
-                                        <!--suppress MavenModelInspection -->
-                                        <Git-Commit-Message-Full>${git.commit.message.full}</Git-Commit-Message-Full>
+                                        <!-- A multiline property in the MANIFEST should start all new line with a space -->
+                                        <!-- Unfortunately, not easy to do in the declarative maven -->
+                                        <!-- <Git-Commit-Message-Full>${git.commit.message.full}</Git-Commit-Message-Full>-->
                                         <!--suppress MavenModelInspection -->
                                         <Git-Commit-Time>${git.commit.time}</Git-Commit-Time>
                                         <!--suppress MavenModelInspection -->
