@@ -15,7 +15,7 @@
 
     <groupId>com.combostrap</groupId>
     <artifactId>combostrap-parent</artifactId>
-    <version>0.1.2-SNAPSHOT</version>
+    <version>0.1.2</version>
     <packaging>pom</packaging>
 
     <name>Combostrap Parent Pom</name>
