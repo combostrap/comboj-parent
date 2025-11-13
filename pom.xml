@@ -104,6 +104,8 @@
         <!-- staging repo value used at multiple place : https://jreleaser.org/guide/latest/examples/maven/staging-artifacts.html -->
         <jreleaser.staging-repo>target/staging-deploy</jreleaser.staging-repo>
 
+        <!-- No test jar by default published -->
+        <skip.test.jar>true</skip.test.jar>
 
     </properties>
 
@@ -408,6 +410,9 @@
                         <goals>
                             <goal>test-jar</goal>
                         </goals>
+                        <configuration>
+                            <skip>${skip.test.jar}</skip>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
