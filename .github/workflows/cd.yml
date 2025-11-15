@@ -1,4 +1,4 @@
-name: Publish package to the Maven Central Repository
+name: Continuous Deployment to Maven Central Repository
 on:
   # Trigger on button click
   workflow_dispatch:

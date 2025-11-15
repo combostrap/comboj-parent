@@ -15,7 +15,7 @@
 
     <groupId>com.combostrap</groupId>
     <artifactId>combostrap-parent</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Combostrap Parent Pom</name>
@@ -416,7 +416,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Ref: https://jreleaser.org/guide/latest/examples/maven/maven-central.html#_maven -->
             <plugin>
                 <groupId>org.jreleaser</groupId>
                 <artifactId>jreleaser-maven-plugin</artifactId>
@@ -434,12 +433,19 @@
                             </command>
                         </signing>
                         <deploy>
+                            <!-- Ref: https://jreleaser.org/guide/latest/examples/maven/maven-central.html#_maven -->
                             <maven>
                                 <mavenCentral>
                                     <sonatype>
                                         <active>RELEASE</active>
                                         <url>${sonatype.central.url.api}</url>
+                                        <applyMavenCentralRules>true</applyMavenCentralRules>
                                         <stagingRepositories>${jreleaser.staging-repo}</stagingRepositories>
+                                        <!-- JReleaser pull maven until the status is published -->
+                                        <!-- Status may take a long time to get the published status -->
+                                        <!-- Max 1 minute wait: 5x12=60 seconds -->
+                                        <retryDelay>5</retryDelay>
+                                        <maxRetries>12</maxRetries>
                                     </sonatype>
                                 </mavenCentral>
                                 <!-- For Snapshot -->
@@ -452,10 +458,20 @@
                                         <closeRepository>true</closeRepository>
                                         <releaseRepository>true</releaseRepository>
                                         <stagingRepositories>${jreleaser.staging-repo}</stagingRepositories>
+                                        <!-- JReleaser pull maven until the status is published -->
+                                        <!-- Status may take a long time to get the published status -->
+                                        <!-- Max 1 minute wait: 5x12=60 seconds -->
+                                        <transitionDelay>5</transitionDelay>
+                                        <transitionMaxRetries>12</transitionMaxRetries>
                                     </snapshot-deploy>
                                 </nexus2>
                             </maven>
                         </deploy>
+                        <release>
+                            <github>
+                                <owner>combostrap</owner>
+                            </github>
+                        </release>
                     </jreleaser>
                 </configuration>
             </plugin>
