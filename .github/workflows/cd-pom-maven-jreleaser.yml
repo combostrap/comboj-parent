@@ -1,9 +1,15 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+# Continuous delivery with JReleaser
+# Why not? maven, it creates a nice GitHub release
+
 name: Continuous Deployment to Maven Central Repository
 on:
   # Trigger on button click
   workflow_dispatch:
-  # Trigger on push
+  # Trigger on push on pom.xml changes
   push:
+    paths:
+      - 'pom.xml'
     branches:
       - 'main'
 jobs:
@@ -24,15 +30,15 @@ jobs:
 
       - name: Publish package
         run: |
-          
+
           set -TCEeuo pipefail
-          
+
           echo "Check config"
           ./mvnw --batch-mode --quiet jreleaser:config > /dev/null
-                    
+
           echo "Stage Artifacts"
           ./mvnw --batch-mode  --quiet -Ppublication
-          
+
           # Deploy snapshot or release
           echo "Deploy snapshot or release"
           ./mvnw --batch-mode jreleaser:deploy
