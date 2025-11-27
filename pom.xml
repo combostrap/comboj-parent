@@ -423,7 +423,6 @@
         <groupId>org.jreleaser</groupId>
         <artifactId>jreleaser-maven-plugin</artifactId>
         <version>${jreleaser.version}</version>
-        <inherited>false</inherited>
         <configuration>
           <jreleaser>
             <!-- https://jreleaser.org/guide/latest/reference/signing.html -->
