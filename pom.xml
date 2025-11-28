@@ -385,24 +385,6 @@
           <useNativeGit>true</useNativeGit>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>examples/**</exclude>
-          </excludes>
-        </configuration>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar-no-fork</goal>
-              <goal>test-jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <!-- Create a test jar -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -484,6 +466,8 @@
 
   <profiles>
     <profile>
+      <!-- For maven central publication -->
+      <!-- https://jreleaser.org/guide/latest/examples/maven/staging-artifacts.html -->
       <id>publication</id>
       <properties>
         <altDeploymentRepository>local::file:./${jreleaser.staging-repo}</altDeploymentRepository>
@@ -506,13 +490,24 @@
               </execution>
             </executions>
           </plugin>
+          <!--
+            Should be present only once otherwise we get this error:
+            Failed to execute goal org.apache.maven.plugins:maven-source-plugin:3.3.1:jar (attach-sources)
+            Presumably you have configured maven-source-plugin to execute twice in your build. You have to configure a classifier for at least one of them.
+          -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
+            <configuration>
+              <excludes>
+                <exclude>examples/**</exclude>
+              </excludes>
+            </configuration>
             <executions>
               <execution>
                 <id>attach-sources</id>
                 <goals>
+                  <!-- Bundle the main sources of the project into a jar archive -->
                   <goal>jar</goal>
                 </goals>
                 <configuration>
